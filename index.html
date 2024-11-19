@@ -295,7 +295,7 @@
     }
 
     .hidden {
-      display: none;
+      display: none !important;
     }
     .visible {
       display: grid;
@@ -306,6 +306,13 @@
       background: rgba(0, 0, 0, .5);
       position: absolute;
       z-index: 4;
+      display: grid;
+      place-items: center;
+    }
+    .modal-content {
+      width: 50%;
+      height: 50%;
+      background: white;
     }
   </style>
 </head>
@@ -354,11 +361,26 @@
       <div></div>
     </section>
     <!-- Modal -->
-    <section class="modal hidden"></section>
+    <section class="modal hidden">
+      <div class="modal-content">
+        <img src="https://img.icons8.com/windows/32/000000/macos-close.png" alt="close" class="modal-content__close">
+      </div>
+    </section>
   </div>
 </body>
 <script>
   const button1 = document.querySelector('.footer div:nth-child(1)');
   const modal = document.querySelector('.modal');
+  const closeButton = document.querySelector('.modal-content__close');
+
+  button1.addEventListener('click', () => {
+    modal.classList.remove('hidden');
+    modal.classList.add('visible');
+  })
+
+  closeButton.addEventListener('click', () => {
+    modal.classList.remove('visible');
+    modal.classList.add('hidden');
+  })
 </script>
 </html>
